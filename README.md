@@ -1,5 +1,5 @@
 # CTS
-云转码, CloudTranscoding or CTS
+CloudTranscoding or CTS
 
 
 ## 当前进度
