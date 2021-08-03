@@ -1,0 +1,8 @@
+{
+    "require": {
+        "mikecao/flight": "^1.3",
+        "joshcam/mysqli-database-class": "dev-master",
+        "voku/pagination": "^2.1",
+        "verot/class.upload.php": "dev-master"
+    }
+}

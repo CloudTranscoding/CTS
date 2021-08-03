@@ -1,0 +1,43 @@
+{
+  "name": "voku/pagination",
+  "type": "library",
+  "description": "Pagination, without a database dependency",
+  "keywords": [
+    "pagination",
+    "pager",
+    "paginator"
+  ],
+  "authors": [
+    {
+      "name": "David Carr",
+      "email": "dave@daveismyname.com",
+      "homepage": "http://www.daveismyname.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Lars Moelleken",
+      "email": "lars@moelleken.org",
+      "homepage": "http://www.moelleken.org/",
+      "role": "Fork-Maintainer"
+    }
+  ],
+  "license": [
+    "MIT"
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "voku\\helper\\": "src/voku/helper/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.1.x-dev"
+    }
+  }
+}

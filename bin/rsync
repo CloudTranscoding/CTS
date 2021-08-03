@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Startup script for rsyncd.
+#
+# chkconfig: 345 86 16
+# description: rsync rocks.
+#
+
+case "$1" in
+start)
+echo "Starting rsyncd..."
+/usr/bin/rsync --daemon --ipv4
+;;
+stop)
+echo "Stopping rsyncd..."
+/usr/bin/pkill -f /usr/bin/rsync
+/usr/bin/rm -rf /var/run/rsyncd.pid
+;;
+restart)
+$0 stop
+sleep 1
+$0 start
+;;
+*)
+echo "Usage: $0 {start|stop|restart}"
+exit 1
+;;
+esac
+
+exit 0
+

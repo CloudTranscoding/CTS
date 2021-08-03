@@ -1,0 +1,228 @@
+<?php
+/*
+screen -dmS test -s "top -c"
+bash -c ""
+#bash --init-file <(cd /home/wwwroot/CTS; while true; do php bin/c2mp4 sleep 1;done)
+screen -dmS backed
+screen -r backed
+cd /home/wwwroot/CTS;
+while true;
+do php bin/c2mp4
+sleep 1;
+done
+*/
+
+set_time_limit(0);
+ini_set("max_execution_time",0);
+ini_set('memory_limit', '5197M');
+include "./init.php";
+
+// 功能参数
+$hls = false;
+if(get_ecfg('cov_hls') == 'on'){
+    $hls = true;
+}
+$ass = false;
+
+// 输入文件
+$table = 'cts_video';
+$jobs = $db->where("video_status",9)->getOne($table);
+$infile = $jobs['video_filename'];
+if(!file_exists($infile)) {
+    //Update to Status 8
+    $db->where ('video_id', $jobs['video_id'])->update($table, ['video_status' => 4 ]);
+    die('File is Miss'.PHP_EOL);
+}
+$outid = $jobs['video_id'];
+$outlog = 'tmp/logs/'.$outid.'.log';
+$outkey = $jobs['video_relid'];
+$outdir = 'cloud/'.$jobs['video_output'];
+$outfile = $outdir.$outkey;
+shell_exec('mkdir -p '.$outdir.'/{hls,img}');
+print "Dir has Created".PHP_EOL;
+// die();
+
+// 分析视频
+$ffprobe = FFMpeg\FFProbe::create();
+$inputs = $ffprobe->streams($infile)->videos()->first();//->get('nb_frames');
+$ip_vbit = round($inputs->get('bit_rate') / 1024);
+$ip_name = $inputs->get('codec_name');
+$ip_type = $inputs->get('codec_type');
+$ip_width = $inputs->get('width');
+$ip_height = $inputs->get('height');
+$ip_aspect = $inputs->get('display_aspect_ratio');
+$ip_pixfmt = $inputs->get('pix_fmt');
+$ip_duration = $inputs->get('duration');
+$ip_frames = $inputs->get('nb_frames');
+//$inputfile = (!is_null($ip_frames) && $ip_frames == false) ? $infile : $outdir.'/'.$outkey.'.mp4';
+
+// 输出参数
+$op_dir = get_ecfg('dir_output');
+$op_vbit = get_ecfg('cov_vbit');
+if ($ip_vbit <= $op_vbit ) {
+    $op_vbit = $ip_vbit;
+}
+$op_mbit = $op_vbit * 2;
+$op_abit = get_ecfg('cov_abit');
+$op_ass = 'app/adsubtitle.ass';
+$op_size = get_ecfg('cov_size');
+$op_skip = get_ecfg('cov_skiptime');
+$op_marker = get_ecfg('cov_watermark');
+
+// Video Filter 更新参数 Todo
+
+if($op_marker === "on") { //水印  //暂时不能开启,非标准视频会出现转换错误的问题
+    if(get_ecfg('position') == 'TR') { //左上角
+        $logomark = '[watermark];[in][watermark]overlay=10:10:1[out]';
+    } elseif(get_ecfg('position') == 'CC') {
+        $logomark = '[watermark];[in][watermark]overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2[out]';
+    } elseif(get_ecfg('position') == 'BR') { //左下角
+        $logomark = '[watermark];[in][watermark]overlay=main_w-overlay_w-10:main_h-overlay_h-10 [out]';
+    } elseif(get_ecfg('position') == 'BL') { //右下角
+        $logomark = '[watermark];[in][watermark]overlay=10:main_h-overlay_h-10 [out]';
+    } else { // 默认右上角
+        $logomark = '[watermark];[in][watermark]overlay=main_w-overlay_w:10:10 [out]';
+    }
+    $logomark = '[watermark]; [in][watermark] overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2 [out]';
+    $filter[] = 'movie=app/watermark.png '.$logomark;
+    $filters = implode(",",$filter);
+}
+
+// 转换为MP4
+$command = 'ffmpeg -y -i %s -threads 0';
+if($op_skip != '00:00:00') {
+    $command .= ' -s '.$op_skip;
+}
+$command .= ' -c:v libx264 -maxrate %sk -bufsize %sk -preset veryfast -pix_fmt yuv420p -max_muxing_queue_size 9999';
+
+// 字幕
+if($ass === true) {
+    $command .= ' -vf "scale='.$op_size.',ass='.$op_ass.'"';
+}
+
+// 水印
+if(!empty($filters)) {
+    //$command .= ' -vf "'.$filters.'"';
+}
+
+$command .= ' -c:a aac -b:a 128k -movflags faststart -f mp4 %s.mp4 2> %s';
+$cmd = sprintf($command,$infile,$op_vbit,$op_mbit,$outdir.'/'.$outkey,$outlog);
+print "Start Convert to MP4...".PHP_EOL;
+var_dump($cmd);
+$db->where ('video_id', $outid)->update($table, ['video_status' => 8 ,'video_duration' => $ip_duration ]);
+shell_exec($cmd);
+print "MP4 Convert Done".PHP_EOL;
+
+// Check MP4 Files
+// die();
+
+//var_dump($ip_frames);
+
+// 生成图片
+if(!is_null($ip_frames) && $ip_frames == false){
+    // 缩略图定义
+    $tmbf0 = '10'; // 独立10
+    $tmbf0_size = '498:280';
+    $tmbf0_frame = round($ip_frames / 10);
+    $tmbf1 = ''; // GIF
+    $tmbf2 = '20'; // 单列 20x1
+    $tmbf2_size = '320:240';
+    $tmbf2_frame =  round($ip_frames / 20);
+    $tmbf3 = '9';
+    $tmbf3_size = '426:240';
+    $tmbf3_frame = round($ip_frames / 9); // 九宫格 9x9
+    $cmd0 = 'ffmpeg -loglevel panic -y -i %s -qscale:v 1 -vframes %s -vf "select=\'not(mod(n,%s))\',scale=%s" -vsync vfr %s';
+    $command_tmb[] = sprintf($cmd0,$infile,$tmbf0,$tmbf0_frame,$tmbf0_size,$outdir.'/img/%01d.jpg');
+    $cmd1 = 'convert -delay 5 -loop 0 -dither None -colors 80 %s -fuzz %s -layers OptimizeFrame %s';
+    $command_tmb[] = sprintf($cmd1,'"'.$outdir.'/img/*.jpg"','"40%"',$outdir.'/preview.gif');
+    $cmd2 = 'ffmpeg -loglevel panic -y -i %s -frames 1 -q:v 1 -vf "select=not(mod(n\,%s)),scale=%s,tile=%sx1" %s';
+    $command_tmb[] = sprintf($cmd2,$infile,$tmbf2_frame,$tmbf2_size,$tmbf2,$outdir.'/slide.jpg');
+    $cmd3 = 'ffmpeg -loglevel panic -ss 00:00:01 -y -i %s -vf "select=not(mod(n\,%s)),scale=%s,tile=3x3" %s';
+    $command_tmb[] = sprintf($cmd3,$infile,$tmbf3_frame,$tmbf3_size,$outdir.'/mozaique.jpg');
+} else {
+    $newinfile = $outdir.'/'.$outkey.'.mp4';
+    $ip_frames = $ffprobe->streams($newinfile)->videos()->first()->get('nb_frames');
+    // 缩略图定义
+    $tmbf0 = '10'; // 独立10
+    $tmbf0_size = '498:280';
+    $tmbf0_frame = round($ip_frames / 10);
+    $tmbf1 = ''; // GIF
+    $tmbf2 = '20'; // 单列 20x1
+    $tmbf2_size = '320:240';
+    $tmbf2_frame =  round($ip_frames / 20);
+    $tmbf3 = '9';
+    $tmbf3_size = '426:240';
+    $tmbf3_frame = round($ip_frames / 9); // 九宫格 9x9
+
+    $GGTMP = 'ffmpeg -ss \'%s\' -y -i %s -vsync 0 -an -s %s -qscale:v 1 -vframes 1 -f image2 %s';
+    foreach (range(1,$tmbf0) as $n) {
+        $sec = ( ($n - 0.5) * $ip_duration / $tmbf0 ) .'s';
+        //var_dump($sec);
+        $command_tmp = sprintf($GGTMP,$sec,$infile,$tmbf0_size,$outdir.'/img/'.$n.'.jpg');
+        $command_tmb[] = $command_tmp;
+    }
+    $cmd1 = 'convert -delay 5 -loop 0 -dither None -colors 80 %s -fuzz %s -layers OptimizeFrame %s';
+    $command_tmb[] = sprintf($cmd1,'"'.$outdir.'/img/*.jpg"','"40%"',$outdir.'/preview.gif');
+    $cmd2 = 'ffmpeg -loglevel panic -y -i %s -frames 1 -q:v 1 -vf "select=not(mod(n\,%s)),scale=%s,tile=%sx1" %s';
+    $command_tmb[] = sprintf($cmd2,$newinfile,$tmbf2_frame,$tmbf2_size,$tmbf2,$outdir.'/slide.jpg');
+    $cmd3 = 'ffmpeg -loglevel panic -ss 00:00:01 -y -i %s -vf "select=not(mod(n\,%s)),scale=%s,tile=3x3" %s';
+    $command_tmb[] = sprintf($cmd3,$newinfile,$tmbf3_frame,$tmbf3_size,$outdir.'/mozaique.jpg');
+}
+var_dump($command_tmb);
+
+//die();
+print "Start Generator Video Images .......".PHP_EOL;
+
+foreach ($command_tmb as $run) {
+    shell_exec($run);
+}
+print "Generator Video Images Done .......".PHP_EOL;
+
+// 转换为HLS
+if($hls) {
+    $srcfile = $outdir.'/'.$outkey.'.mp4';
+    if(!file_exists($srcfile)) {
+        die('Task Queue Empty!'.PHP_EOL);
+    }
+    print "Convert to HLS".PHP_EOL;
+    $command_hls  = 'ffmpeg -y -i %s';
+    if(get_ecfg('cov_hlsaes') === 'off'){
+        // AES Func
+        $aeskey = $outid.'.key';
+        $aeskeyinfo = $outid.'.info';
+        $aesfile = shell_exec("openssl rand 16 > ".$aeskey);
+        $aeshex = shell_exec('openssl rand -hex 16');
+        @file_put_contents($outdir.'/hls/'.$aeskeyinfo,"$aeskey\n$aeskey\n$aeshex");
+
+        // Command
+        $command_hls .= ' -c copy -bsf:v h264_mp4toannexb -start_number 0 -hls_list_size 0 -hls_time %s -hls_key_info_file %s %s';
+        $cmd = sprintf($command_hls,$srcfile,get_ecfg('cov_hlststime'),$outdir.'/hls/'.$aeskeyinfo,$outdir.'/hls/index.m3u8');
+
+    } else {
+        $command_hls .= ' -c copy -start_number 0 -hls_time %s -hls_list_size 0 -f hls %s';
+        $cmd = sprintf($command_hls,$srcfile,get_ecfg('cov_hlststime'),$outdir.'/hls/index.m3u8');
+    }
+    shell_exec($cmd);
+    // Move Key
+    @unlink($outdir.'/hls/'.$aeskey);
+    @rename($aeskey,$outdir.'/hls/'.$aeskey);
+    @unlink($aeskey);
+    print "HLS Convert Done".PHP_EOL;
+
+    print "Create Master M3U8".PHP_EOL;
+# Create Master
+$master = $outdir.'/index.m3u8';
+$master_content = '#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=700000,RESOLUTION=720x480
+hls/index.m3u8
+';
+@file_put_contents($master,$master_content);
+    print "Master M3u8 Has Been Created".PHP_EOL;
+
+}
+## Fix
+@shell_exec('chown www:www -R '.$outdir);
+$db->where ('video_id', $outid)->update($table, ['video_status' => 2 ]);
+print "All Task is done".PHP_EOL;
+?>

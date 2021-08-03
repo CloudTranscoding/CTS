@@ -1,0 +1,14 @@
+[encoder]
+dir_domain = "http://192.154.101.106"
+dir_output = "Ymd"
+cov_vbit = 700
+cov_abit = 128
+cov_size = "720:-1"
+cov_skiptime = "00:00:00"
+cov_watermark = "off"
+cov_position = "TR"
+cov_watermarkpic = "watermark.png"
+cov_hls = "on"
+cov_hlsaes = "off"
+cov_hlststime = 10
+cov_hlsfake = "ts"

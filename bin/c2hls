@@ -1,0 +1,75 @@
+<?php
+set_time_limit(0);
+ini_set("max_execution_time",0);
+ini_set('memory_limit', '5197M');
+include "./init.php";
+
+$hls = false;
+if(get_ecfg('cov_hls') == 'on'){
+    $hls = true;
+}
+
+$table = 'cts_video';
+$jobs = $db->where("video_status",2)->getOne($table);
+$infile = $jobs['video_filename'];
+if(!file_exists($infile)) {
+    //Update to Status 8
+    die('Queue Empty'.PHP_EOL);
+}
+$outid = $jobs['video_id'];
+$outlog = 'tmp/logs/'.$outid.'.log';
+$outkey = $jobs['video_relid'];
+$outdir = 'cloud/'.$jobs['video_output'];
+$outfile = $outdir.$outkey;
+shell_exec('mkdir -p '.$outdir.'/{hls,mp4,img}');
+print "Dir has Created".PHP_EOL;
+// die();
+
+$db->where ('video_id', $outid)->update($table, ['video_status' => 2 ]);
+
+// Cloud To HLS
+$infile = $outdir.'/'.$outkey.'.mp4';
+
+$command_hls  = '/usr/local/bin/ffmpeg -y -i %s';
+if(get_ecfg('cov_hlsaes') === 'off'){
+    // AES Func
+    $aeskey = $outid.'.key';
+    $aeskeyinfo = $outid.'.info';
+    $aesfile = shell_exec("openssl rand 16 > ".$aeskey);
+    $aeshex = shell_exec('openssl rand -hex 16');
+    @file_put_contents($outdir.'/hls/'.$aeskeyinfo,"$aeskey\n$aeskey\n$aeshex");
+
+    // Command
+    $command_hls .= ' -c copy -bsf:v h264_mp4toannexb -start_number 0 -hls_list_size 0 -hls_time %s -hls_key_info_file %s %s';
+    $cmd = sprintf($command_hls,$infile,get_ecfg('cov_hlststime'),$outdir.'/hls/'.$aeskeyinfo,$outdir.'/hls/index.m3u8');
+
+} else {
+    $command_hls .= ' -c copy -start_number 0 -hls_time %s -hls_list_size 0 -f hls %s';
+    $cmd = sprintf($command_hls,$infile,get_ecfg('cov_hlststime'),$outdir.'/hls/index.m3u8');
+}
+
+# Create Master
+$master = $outdir.'/index.m3u8';
+$master_content = '#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=700000,RESOLUTION=720x480
+hls/index.m3u8
+';
+@file_put_contents($master,$master_content);
+
+shell_exec($cmd);
+
+// Move Key
+@unlink($outdir.'/hls/'.$aeskey);
+@rename($aeskey,$outdir.'/hls/'.$aeskey);
+@unlink($aeskey);
+
+print PHP_EOL;
+var_dump($cmd);
+
+
+
+var_dump($command_hls);
+
+?>
+

@@ -1,0 +1,14 @@
+<?php
+/*
+bin/c2rsync
+blkid -o export /dev/sda2 | grep '^TYPE' | cut -d"=" -f2
+
+*/
+
+
+
+
+
+
+
+

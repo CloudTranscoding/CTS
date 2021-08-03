@@ -1,0 +1,52 @@
+#!/usr/bin/env php
+<?php
+use AFM\Rsync\Rsync;
+set_time_limit(0);
+ini_set("max_execution_time",0);
+ini_set('memory_limit', '5197M');
+include "./init.php";
+
+if($argv['1'] === 'stop') {
+    print "Stop Rsync....".PHP_EOL;
+    exec('/usr/bin/pkill "rsync"');
+    die();
+}
+
+if($argv['1'] === 'sync') {
+    print "Gen XML ....".PHP_EOL;
+    $storage = [
+        '43.242.173.78' =>  'cloud_sync',
+        //'107.155.115.153' =>  'cloud_sync',
+    ];
+    $origin = APP_ROOT.'cloud';
+    $synctpl = file_get_contents(APP_ROOT.'bin/sersync64.xml');
+    foreach ($storage as $k => $v){
+        $st = '<remote ip="'.$k.'" name="'.$v.'"/>';
+        $list[] = $st;
+    }
+    $remote = implode("\n",$list);
+    $xml = sprintf($synctpl,$origin,$remote);
+    file_put_contents(APP_ROOT.'bin/confxml.xml',$xml);
+    print 'Start Rsync.......'.PHP_EOL;
+    $command_rsync = APP_ROOT.'bin/sersync64 -d -r -o '.APP_ROOT.'/bin/confxml.xml > /dev/null 2>/dev/null & ';
+    //echo $command_rsync;
+    shell_exec($command_rsync);
+    die();
+}
+
+/*
+$config = array(
+    'delete_from_target' => false,
+    'ssh' => array(
+        'host' => 'myhost.com',
+        'private_key' => '/my/key'
+    )
+);
+$target = 'test';
+$rsync = new Rsync($config);
+$rsync->setFollowSymlinks(false);
+$rsync->sync($origin, $target);
+*/
+
+?>
+

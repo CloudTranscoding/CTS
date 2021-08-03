@@ -1,0 +1,91 @@
+<?php
+/*
+
+*/
+set_time_limit(0);
+ini_set("max_execution_time",0);
+ini_set('memory_limit', '5197M');
+include "./init.php";
+
+/*
+ *
+$outid = $jobs['video_id'];
+$outlog = 'tmp/logs/'.$outid.'.log';
+$outkey = $jobs['video_relid'];
+$outdir = 'cloud/'.$jobs['video_output'];
+$outfile = $outdir.$outkey;
+shell_exec('mkdir -p '.$outdir.'/{hls,mp4,img}');
+print "Dir has Created".PHP_EOL;
+// die();
+
+*/
+
+$infile = '/home/wwwroot/CTS/upload/original/5abcc0d8547ef.wmv';
+//$infile = '/home/wwwroot/CTS/cloud/20180329/nl1NBfL9Qb/nl1NBfL9Qb.mp4';
+$outdir = 'cloud/20180329/nl1NBfL9Qb';
+
+$ffprobe = FFMpeg\FFProbe::create();
+$inputs = $ffprobe->streams($infile)->videos()->first();//->get('codec_name');
+$ip_vbit = round($inputs->get('bit_rate') / 1024);
+$ip_name = $inputs->get('codec_name');
+$ip_type = $inputs->get('codec_type');
+$ip_width = $inputs->get('width');
+$ip_height = $inputs->get('height');
+$ip_aspect = $inputs->get('display_aspect_ratio');
+$ip_pixfmt = $inputs->get('pix_fmt');
+$ip_duration = $inputs->get('duration');
+$ip_frames = $inputs->get('nb_frames');
+
+$inputfile = (!is_null($ip_frames) && $ip_frames == false) ? $infile : $outdir.'/'.$outkey.'.mp4';
+
+var_dump($inputfile);
+
+// 缩略图定义
+$tmbf0 = '10'; // 独立10
+$tmbf0_size = '498:280';
+$tmbf0_frame = round($ip_frames / 10);
+$tmbf1 = ''; // GIF
+$tmbf2 = '20'; // 单列 20x1
+$tmbf2_size = '320:240';
+$tmbf2_frame =  round($ip_frames / 20);
+$tmbf3 = '9';
+$tmbf3_size = '426:240';
+$tmbf3_frame = round($ip_frames / 9); // 九宫格 9x9
+
+$GGTMP = 'ffmpeg -ss \'%s\' -y -i %s -vsync 0 -an -s %s -qscale:v 1 -vframes 1 -f image2 %s';
+foreach (range(1,$tmbf0) as $n) {
+    $sec = ( ($n - 0.5) * $ip_duration / $tmbf0 ) .'s';
+    //var_dump($sec);
+    $command_tmp = sprintf($GGTMP,$sec,$infile,$tmbf0_size,$outdir.'/'.$n.'.jpg');
+    $command_tmb[] = $command_tmp;
+}
+
+//ffmpeg -ss '96.6s' -i /home/wwwroot/CTS/upload/original/5abcc0d8547ef.wmv -an -vf select="eq(pict_type\,I)" -vframes 1 001.jpg
+
+$cmd0 = 'ffmpeg -loglevel panic -y -i %s -qscale:v 1 -vframes %s -vf "select=\'not(mod(n,%s))\',scale=%s" -vsync vfr %s';
+$command_tmb[] = sprintf($cmd0,$infile,$tmbf0,$tmbf0_frame,$tmbf0_size,$outdir.'/img/%01d.jpg');
+
+$cmd1 = 'convert -delay 5 -loop 0 -dither None -colors 80 %s -fuzz %s -layers OptimizeFrame %s';
+$command_tmb[] = sprintf($cmd1,'"'.$outdir.'/img/*.jpg"','"40%"',$outdir.'/preview.gif');
+$cmd2 = 'ffmpeg -loglevel panic -y -i %s -frames 1 -q:v 1 -vf "select=not(mod(n\,%s)),scale=%s,tile=%sx1" %s';
+$command_tmb[] = sprintf($cmd2,$infile,$tmbf2_frame,$tmbf2_size,$tmbf2,$outdir.'/slide.jpg');
+$cmd3 = 'ffmpeg -loglevel panic -ss 00:00:01 -y -i %s -vf "select=not(mod(n\,%s)),scale=%s,tile=3x3" %s';
+$command_tmb[] = sprintf($cmd3,$infile,$tmbf3_frame,$tmbf3_size,$outdir.'/mozaique.jpg');
+
+var_dump($command_tmb);
+foreach ($command_tmb as $run) {
+    //shell_exec($run);
+}
+
+
+
+// 单列
+
+
+
+
+//单列
+
+
+
+?>

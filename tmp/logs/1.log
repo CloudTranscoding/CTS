@@ -1,0 +1,67 @@
+ffmpeg version N-98513-g2c1cc326e9 Copyright (c) 2000-2020 the FFmpeg developers
+  built with gcc 8 (GCC)
+  configuration: --prefix=/usr/local/ffmpegtoolkit --bindir=/usr/local/ffmpegtoolkit/bin --pkg-config-flags=--static --extra-libs=-lpthread --extra-libs=-lm --extra-cflags='-I/usr/local/include -I/usr/local/cuda/include -I/opt/intel/mediasdk/include -I/include' --extra-ldflags='-L/usr/local/lib -L/usr/local/cuda/lib64 -L/opt/intel/mediasdk/lib64 -L/opt/intel/mediasdk/plugins' --disable-debug --disable-indev=sndio --disable-outdev=sndio --enable-fontconfig --enable-gray --enable-gpl --enable-gmp --enable-libgme --enable-libvmaf --enable-libopenjpeg --enable-librubberband --enable-libzvbi --enable-libdav1d --enable-libspeex --enable-version3 --arch=x86_64 --enable-libmfx --enable-opencl --enable-nonfree --enable-runtime-cpudetect --enable-shared --enable-pthreads --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libsoxr --enable-libmp3lame --enable-libfdk-aac --enable-vaapi --enable-libfreetype --enable-libfribidi --enable-libzimg --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265 --enable-libaom --enable-libxvid --enable-libwebp --enable-postproc --enable-swscale --enable-avfilter --enable-libass --enable-libxml2
+  libavutil      56. 55.100 / 56. 55.100
+  libavcodec     58. 96.100 / 58. 96.100
+  libavformat    58. 48.100 / 58. 48.100
+  libavdevice    58. 11.101 / 58. 11.101
+  libavfilter     7. 87.100 /  7. 87.100
+  libswscale      5.  8.100 /  5.  8.100
+  libswresample   3.  8.100 /  3.  8.100
+  libpostproc    55.  8.100 / 55.  8.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/www/wwwroot/cts.zhua.eu/upload/original/6108f096d7153.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.76.100
+  Duration: 00:00:15.00, start: 0.000000, bitrate: 1572 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080 [SAR 1:1 DAR 16:9], 1436 kb/s, 25 fps, 25 tbr, 12800 tbn, 50 tbc (default)
+    Metadata:
+      handler_name    : ISO Media file produced by Google Inc.
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 129 kb/s (default)
+    Metadata:
+      handler_name    : ISO Media file produced by Google Inc.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+  Stream #0:1 -> #0:1 (aac (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0x1880c40] using SAR=1/1
+[libx264 @ 0x1880c40] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x1880c40] profile High, level 4.0, 4:2:0, 8-bit
+[libx264 @ 0x1880c40] 264 - core 161 r3018 db0d417 - H.264/MPEG-4 AVC codec - Copyleft 2003-2020 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=24 lookahead_threads=8 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 vbv_maxrate=700 vbv_bufsize=1400 crf_max=0.0 nal_hrd=none filler=0 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'cloud/20210803/EESqHjFlYw/EESqHjFlYw.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.48.100
+    Stream #0:0(und): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 1920x1080 [SAR 1:1 DAR 16:9], q=-1--1, 25 fps, 12800 tbn, 25 tbc (default)
+    Metadata:
+      handler_name    : ISO Media file produced by Google Inc.
+      encoder         : Lavc58.96.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 700000/0/0 buffer size: 1400000 vbv_delay: N/A
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : ISO Media file produced by Google Inc.
+      encoder         : Lavc58.96.100 aac
+frame=   22 fps=0.0 q=0.0 size=       0kB time=00:00:01.43 bitrate=   0.3kbits/s speed=2.66x    frame=   36 fps= 33 q=0.0 size=       0kB time=00:00:01.99 bitrate=   0.2kbits/s speed=1.85x    frame=  123 fps= 78 q=28.0 size=     256kB time=00:00:05.47 bitrate= 382.8kbits/s speed=3.46x    frame=  234 fps=112 q=28.0 size=     512kB time=00:00:09.91 bitrate= 423.1kbits/s speed=4.76x    frame=  345 fps=133 q=28.0 size=    1024kB time=00:00:14.34 bitrate= 584.6kbits/s speed=5.55x    [mp4 @ 0x1882b00] Starting second pass: moving the moov atom to the beginning of the file
+frame=  375 fps=137 q=-1.0 Lsize=    1395kB time=00:00:15.00 bitrate= 761.8kbits/s speed=5.48x    
+video:1143kB audio:239kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.985590%
+[libx264 @ 0x1880c40] frame I:2     Avg QP:25.78  size: 50069
+[libx264 @ 0x1880c40] frame P:156   Avg QP:23.03  size:  5823
+[libx264 @ 0x1880c40] frame B:217   Avg QP:25.55  size:   741
+[libx264 @ 0x1880c40] consecutive B-frames:  0.8% 63.5%  8.0% 27.7%
+[libx264 @ 0x1880c40] mb I  I16..4: 26.4% 63.1% 10.5%
+[libx264 @ 0x1880c40] mb P  I16..4:  2.8%  1.8%  0.1%  P16..4: 13.7%  3.3%  1.1%  0.0%  0.0%    skip:77.2%
+[libx264 @ 0x1880c40] mb B  I16..4:  0.1%  0.0%  0.0%  B16..8:  2.8%  0.4%  0.0%  direct: 1.0%  skip:95.7%  L0:47.2% L1:49.5% BI: 3.3%
+[libx264 @ 0x1880c40] 8x8 transform intra:41.9% inter:41.2%
+[libx264 @ 0x1880c40] coded y,uvDC,uvAC intra: 23.5% 57.4% 6.6% inter: 0.6% 4.2% 0.0%
+[libx264 @ 0x1880c40] i16 v,h,dc,p: 47% 37% 11%  6%
+[libx264 @ 0x1880c40] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 25% 28% 30%  3%  3%  3%  3%  3%  3%
+[libx264 @ 0x1880c40] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 37% 30% 10%  4%  4%  5%  4%  4%  3%
+[libx264 @ 0x1880c40] i8c dc,h,v,p: 37% 33% 23%  6%
+[libx264 @ 0x1880c40] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x1880c40] kb/s:623.60
+[aac @ 0x18be540] Qavg: 556.293

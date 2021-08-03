@@ -1,0 +1,13 @@
+<?php
+
+$id = '1';
+$aeskey = $id.'.key';
+$aeskeyinfo = $id.'.info';
+$aesfile = shell_exec("openssl rand 16 > ".$aeskey);
+$aeshex = shell_exec('openssl rand -hex 16');
+file_put_contents($aeskeyinfo,"$aeskey\n$aeskey\n$aeshex");
+
+
+// #EXT-X-KEY:METHOD=AES-128,URI="1.key"
+
+?>

@@ -1,0 +1,19 @@
+.pagination > li{
+	padding: 0!important;
+}
+.jtable-left-area{
+	float:left;
+}
+.jtable-right-area{
+	float:right;
+	position:relative!important;
+}
+.jtable-left-area > .pagination{
+	margin:0!important;
+}
+.jtable-goto-page, .jtable-page-size-change{
+	vertical-align: top;
+}
+.input-no-border{
+	border:none;
+}

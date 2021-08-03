@@ -1,0 +1,1016 @@
+[
+    {
+        "name": "albertofem/rsync-lib",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/albertofem/rsync-lib.git",
+            "reference": "6f7e31a15d5a2fe712136c367a35d2599bb5dbe5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/albertofem/rsync-lib/zipball/6f7e31a15d5a2fe712136c367a35d2599bb5dbe5",
+            "reference": "6f7e31a15d5a2fe712136c367a35d2599bb5dbe5",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": ">=4.0,<6"
+        },
+        "time": "2018-01-13T20:13:12+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "AFM": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Alberto Fernandez",
+                "email": "albertofem@gmail.com"
+            }
+        ],
+        "description": "A simple PHP rsync wrapper library",
+        "homepage": "http://albertofem.com",
+        "keywords": [
+            "rsync library"
+        ]
+    },
+    {
+        "name": "alchemy/binary-driver",
+        "version": "1.6.0",
+        "version_normalized": "1.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/alchemy-fr/BinaryDriver.git",
+            "reference": "80c6633890afb71d2417ae851d0ad167d8b00b95"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/alchemy-fr/BinaryDriver/zipball/80c6633890afb71d2417ae851d0ad167d8b00b95",
+            "reference": "80c6633890afb71d2417ae851d0ad167d8b00b95",
+            "shasum": ""
+        },
+        "require": {
+            "evenement/evenement": "^2.0|^1.0",
+            "monolog/monolog": "^1.3",
+            "php": ">=5.5",
+            "psr/log": "^1.0",
+            "symfony/process": "^2.0|^3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.0|^5.0"
+        },
+        "time": "2016-03-02T13:49:15+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Alchemy": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Romain Neutron",
+                "email": "imprec@gmail.com",
+                "homepage": "http://www.lickmychip.com/"
+            },
+            {
+                "name": "Phraseanet Team",
+                "email": "info@alchemy.fr",
+                "homepage": "http://www.phraseanet.com/"
+            },
+            {
+                "name": "Nicolas Le Goff",
+                "email": "legoff.n@gmail.com"
+            }
+        ],
+        "description": "A set of tools to build binary drivers",
+        "keywords": [
+            "binary",
+            "driver"
+        ]
+    },
+    {
+        "name": "cocur/background-process",
+        "version": "v0.7",
+        "version_normalized": "0.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cocur/background-process.git",
+            "reference": "9ae2902922f02ec5544d723756758eb7304c6869"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cocur/background-process/zipball/9ae2902922f02ec5544d723756758eb7304c6869",
+            "reference": "9ae2902922f02ec5544d723756758eb7304c6869",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.8|~5.1"
+        },
+        "time": "2017-02-11T12:41:41+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Cocur\\BackgroundProcess\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Start processes in the background that continue running when the PHP process exists.",
+        "keywords": [
+            "background",
+            "process",
+            "unix"
+        ]
+    },
+    {
+        "name": "doctrine/cache",
+        "version": "v1.7.1",
+        "version_normalized": "1.7.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/doctrine/cache.git",
+            "reference": "b3217d58609e9c8e661cd41357a54d926c4a2a1a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/doctrine/cache/zipball/b3217d58609e9c8e661cd41357a54d926c4a2a1a",
+            "reference": "b3217d58609e9c8e661cd41357a54d926c4a2a1a",
+            "shasum": ""
+        },
+        "require": {
+            "php": "~7.1"
+        },
+        "conflict": {
+            "doctrine/common": ">2.2,<2.4"
+        },
+        "require-dev": {
+            "alcaeus/mongo-php-adapter": "^1.1",
+            "mongodb/mongodb": "^1.1",
+            "phpunit/phpunit": "^5.7",
+            "predis/predis": "~1.0"
+        },
+        "suggest": {
+            "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
+        },
+        "time": "2017-08-25T07:02:50+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.7.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Roman Borschel",
+                "email": "roman@code-factory.org"
+            },
+            {
+                "name": "Benjamin Eberlei",
+                "email": "kontakt@beberlei.de"
+            },
+            {
+                "name": "Guilherme Blanco",
+                "email": "guilhermeblanco@gmail.com"
+            },
+            {
+                "name": "Jonathan Wage",
+                "email": "jonwage@gmail.com"
+            },
+            {
+                "name": "Johannes Schmitt",
+                "email": "schmittjoh@gmail.com"
+            }
+        ],
+        "description": "Caching library offering an object-oriented API for many cache backends",
+        "homepage": "http://www.doctrine-project.org",
+        "keywords": [
+            "cache",
+            "caching"
+        ]
+    },
+    {
+        "name": "evenement/evenement",
+        "version": "v2.1.0",
+        "version_normalized": "2.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/igorw/evenement.git",
+            "reference": "6ba9a777870ab49f417e703229d53931ed40fd7a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/igorw/evenement/zipball/6ba9a777870ab49f417e703229d53931ed40fd7a",
+            "reference": "6ba9a777870ab49f417e703229d53931ed40fd7a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^6.0||^5.7||^4.8.35"
+        },
+        "time": "2017-07-17T17:39:19+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Evenement": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Igor Wiedler",
+                "email": "igor@wiedler.ch"
+            }
+        ],
+        "description": "Événement is a very simple event dispatching library for PHP",
+        "keywords": [
+            "event-dispatcher",
+            "event-emitter"
+        ]
+    },
+    {
+        "name": "joshcam/mysqli-database-class",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ThingEngineer/PHP-MySQLi-Database-Class.git",
+            "reference": "e122f8e0c22165092b81578ecd618842e9e01d64"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ThingEngineer/PHP-MySQLi-Database-Class/zipball/e122f8e0c22165092b81578ecd618842e9e01d64",
+            "reference": "e122f8e0c22165092b81578ecd618842e9e01d64",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2018-02-08T05:07:59+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "files": [
+                "MysqliDb.php",
+                "dbObject.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Josh Campbell",
+                "email": "josh.lee.campbell@gmail.com",
+                "homepage": "https://github.com/joshcam",
+                "role": "Developer"
+            },
+            {
+                "name": "Alexander V. Butenko",
+                "email": "a.butenka@gmail.com",
+                "homepage": "http://smarttechdo.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "PHP MySQL Wrapper and object mapper which utilizes MySQLi and prepared statements"
+    },
+    {
+        "name": "khill/php-duration",
+        "version": "1.0.4",
+        "version_normalized": "1.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kevinkhill/php-duration.git",
+            "reference": "10b170dec845f7050548055e4b018d78f17112c0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kevinkhill/php-duration/zipball/10b170dec845f7050548055e4b018d78f17112c0",
+            "reference": "10b170dec845f7050548055e4b018d78f17112c0",
+            "shasum": ""
+        },
+        "require-dev": {
+            "doctrine/instantiator": "1.0.4",
+            "phpunit/phpunit": "~4.8",
+            "satooshi/php-coveralls": "~1.0",
+            "symfony/config": "~2.0",
+            "symfony/console": "~2.0",
+            "symfony/filesystem": "~2.0",
+            "symfony/stopwatch": "~2.0",
+            "symfony/yaml": "~2.0"
+        },
+        "time": "2017-09-09T16:08:03+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Khill\\Duration\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kevin Hill",
+                "email": "kevinkhill@gmail.com",
+                "role": "Creator"
+            }
+        ],
+        "description": "Converts between colon formatted time, human-readable time and seconds",
+        "keywords": [
+            "convert",
+            "duration",
+            "seconds",
+            "time"
+        ]
+    },
+    {
+        "name": "mikecao/flight",
+        "version": "v1.3.5",
+        "version_normalized": "1.3.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mikecao/flight.git",
+            "reference": "e146b8c0ddbc6384c5a66f23dea71743fc282289"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mikecao/flight/zipball/e146b8c0ddbc6384c5a66f23dea71743fc282289",
+            "reference": "e146b8c0ddbc6384c5a66f23dea71743fc282289",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.6"
+        },
+        "time": "2017-10-20T01:46:56+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "flight/autoload.php",
+                "flight/Flight.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mike Cao",
+                "email": "mike@mikecao.com",
+                "homepage": "http://www.mikecao.com/",
+                "role": "Original Developer"
+            }
+        ],
+        "description": "Flight is a fast, simple, extensible framework for PHP. Flight enables you to quickly and easily build RESTful web applications.",
+        "homepage": "http://flightphp.com"
+    },
+    {
+        "name": "monolog/monolog",
+        "version": "1.23.0",
+        "version_normalized": "1.23.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Seldaek/monolog.git",
+            "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+            "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "psr/log": "~1.0"
+        },
+        "provide": {
+            "psr/log-implementation": "1.0.0"
+        },
+        "require-dev": {
+            "aws/aws-sdk-php": "^2.4.9 || ^3.0",
+            "doctrine/couchdb": "~1.0@dev",
+            "graylog2/gelf-php": "~1.0",
+            "jakub-onderka/php-parallel-lint": "0.9",
+            "php-amqplib/php-amqplib": "~2.4",
+            "php-console/php-console": "^3.1.3",
+            "phpunit/phpunit": "~4.5",
+            "phpunit/phpunit-mock-objects": "2.3.0",
+            "ruflin/elastica": ">=0.90 <3.0",
+            "sentry/sentry": "^0.13",
+            "swiftmailer/swiftmailer": "^5.3|^6.0"
+        },
+        "suggest": {
+            "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
+            "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+            "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+            "ext-mongo": "Allow sending log messages to a MongoDB server",
+            "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+            "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+            "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
+            "php-console/php-console": "Allow sending log messages to Google Chrome",
+            "rollbar/rollbar": "Allow sending log messages to Rollbar",
+            "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
+            "sentry/sentry": "Allow sending log messages to a Sentry server"
+        },
+        "time": "2017-06-19T01:22:40+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Monolog\\": "src/Monolog"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jordi Boggiano",
+                "email": "j.boggiano@seld.be",
+                "homepage": "http://seld.be"
+            }
+        ],
+        "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+        "homepage": "http://github.com/Seldaek/monolog",
+        "keywords": [
+            "log",
+            "logging",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "neutron/temporary-filesystem",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/romainneutron/Temporary-Filesystem.git",
+            "reference": "694aa3885f653dd429584e825ffbab79441d285f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/romainneutron/Temporary-Filesystem/zipball/694aa3885f653dd429584e825ffbab79441d285f",
+            "reference": "694aa3885f653dd429584e825ffbab79441d285f",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.6 || ^7.0",
+            "symfony/filesystem": "^2.3 || ^3.0 || ^4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^5.0"
+        },
+        "time": "2018-02-07T21:11:57+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Neutron": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Romain Neutron",
+                "email": "imprec@gmail.com"
+            }
+        ],
+        "description": "Symfony filesystem extension to handle temporary files"
+    },
+    {
+        "name": "pear-pear.php.net/Config_Lite",
+        "version": "0.2.6",
+        "version_normalized": "0.2.6.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.php.net/get/Config_Lite-0.2.6.tgz",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "php": ">=5.2.0.0"
+        },
+        "replace": {
+            "pear-pear/config_lite": "== 0.2.6.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "lgpl"
+        ],
+        "description": "This package defines a class for config/settings text files in ini style.\n\t\tCurrently classes available are:\n\t\t* Config_Lite: a class with arrayaccess to handle ini style files\n\t\t* Config_Lite_Exception: Interface implemented by Exceptions"
+    },
+    {
+        "name": "phlak/config",
+        "version": "3.0.1",
+        "version_normalized": "3.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHLAK/Config.git",
+            "reference": "2bfdb695dd2835944863aeea7fbc275c269b5d02"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHLAK/Config/zipball/2bfdb695dd2835944863aeea7fbc275c269b5d02",
+            "reference": "2bfdb695dd2835944863aeea7fbc275c269b5d02",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6",
+            "symfony/yaml": "^3.0 || ^4.0"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2.3",
+            "phpunit/phpunit": "^5.7"
+        },
+        "time": "2018-02-25T01:06:33+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PHLAK\\Config\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Chris Kankiewicz",
+                "email": "Chris@ChrisKankiewicz.com"
+            }
+        ],
+        "description": "Config loading and management"
+    },
+    {
+        "name": "php-ffmpeg/php-ffmpeg",
+        "version": "v0.11.1-pl-1",
+        "version_normalized": "0.11.1.0-patch1",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHP-FFMpeg/PHP-FFMpeg.git",
+            "reference": "e91b2276e349e28030e6d2a46eb292294fd5e947"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHP-FFMpeg/PHP-FFMpeg/zipball/e91b2276e349e28030e6d2a46eb292294fd5e947",
+            "reference": "e91b2276e349e28030e6d2a46eb292294fd5e947",
+            "shasum": ""
+        },
+        "require": {
+            "alchemy/binary-driver": "^1.5",
+            "doctrine/cache": "^1.0",
+            "evenement/evenement": "^2.0 || ^1.0",
+            "neutron/temporary-filesystem": "^2.1.1",
+            "php": "^5.3.9 || ^7.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.8.36",
+            "sami/sami": "~1.0",
+            "silex/silex": "~1.0"
+        },
+        "suggest": {
+            "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
+        },
+        "time": "2018-02-21T19:24:02+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.7-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "FFMpeg": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Romain Neutron",
+                "email": "imprec@gmail.com",
+                "homepage": "http://www.lickmychip.com/"
+            },
+            {
+                "name": "Phraseanet Team",
+                "email": "info@alchemy.fr",
+                "homepage": "http://www.phraseanet.com/"
+            },
+            {
+                "name": "Patrik Karisch",
+                "email": "patrik@karisch.guru",
+                "homepage": "http://www.karisch.guru"
+            },
+            {
+                "name": "Romain Biard",
+                "email": "romain.biard@gmail.com",
+                "homepage": "https://www.strime.io/"
+            },
+            {
+                "name": "Jens Hausdorf",
+                "email": "hello@jens-hausdorf.de",
+                "homepage": "https://jens-hausdorf.de"
+            }
+        ],
+        "description": "FFMpeg PHP, an Object Oriented library to communicate with AVconv / ffmpeg",
+        "keywords": [
+            "audio",
+            "audio processing",
+            "avconv",
+            "avprobe",
+            "ffmpeg",
+            "ffprobe",
+            "video",
+            "video processing"
+        ]
+    },
+    {
+        "name": "psr/log",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-10-10T12:19:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Log\\": "Psr/Log/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "homepage": "https://github.com/php-fig/log",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "symfony/filesystem",
+        "version": "v4.0.6",
+        "version_normalized": "4.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/filesystem.git",
+            "reference": "5d2d655b2c72fc4d9bf7e9bf14f72a447b940f21"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/5d2d655b2c72fc4d9bf7e9bf14f72a447b940f21",
+            "reference": "5d2d655b2c72fc4d9bf7e9bf14f72a447b940f21",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.1.3"
+        },
+        "time": "2018-02-22T10:50:29+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Filesystem\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Filesystem Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "symfony/process",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/process.git",
+            "reference": "cc4aea21f619116aaf1c58016a944e4821c8e8af"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/process/zipball/cc4aea21f619116aaf1c58016a944e4821c8e8af",
+            "reference": "cc4aea21f619116aaf1c58016a944e4821c8e8af",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.5.9|>=7.0.8"
+        },
+        "time": "2018-02-12T17:55:00+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Process\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Process Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "symfony/yaml",
+        "version": "v4.0.6",
+        "version_normalized": "4.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/yaml.git",
+            "reference": "de5f125ea39de846b90b313b2cfb031a0152d223"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/yaml/zipball/de5f125ea39de846b90b313b2cfb031a0152d223",
+            "reference": "de5f125ea39de846b90b313b2cfb031a0152d223",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.1.3"
+        },
+        "conflict": {
+            "symfony/console": "<3.4"
+        },
+        "require-dev": {
+            "symfony/console": "~3.4|~4.0"
+        },
+        "suggest": {
+            "symfony/console": "For validating YAML files using the lint command"
+        },
+        "time": "2018-02-19T20:08:53+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Yaml\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Yaml Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "verot/class.upload.php",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/verot/class.upload.php.git",
+            "reference": "711f317e0bc5ceb94de4a12fd3a5765e47d443d5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/verot/class.upload.php/zipball/711f317e0bc5ceb94de4a12fd3a5765e47d443d5",
+            "reference": "711f317e0bc5ceb94de4a12fd3a5765e47d443d5",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=4"
+        },
+        "time": "2018-03-11T22:30:16+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "src/class.upload.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0-only"
+        ],
+        "authors": [
+            {
+                "name": "Colin Verot",
+                "email": "colin@verot.net"
+            }
+        ],
+        "description": "This PHP class uploads files and manipulates images very easily.",
+        "homepage": "http://www.verot.net/php_class_upload.htm",
+        "keywords": [
+            "gd",
+            "upload"
+        ]
+    },
+    {
+        "name": "voku/pagination",
+        "version": "2.1.7",
+        "version_normalized": "2.1.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/voku/pagination.git",
+            "reference": "43a0c4316cd2e0123877d4e29e0e021b40857561"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/voku/pagination/zipball/43a0c4316cd2e0123877d4e29e0e021b40857561",
+            "reference": "43a0c4316cd2e0123877d4e29e0e021b40857561",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2016-11-05T21:46:45+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "voku\\helper\\": "src/voku/helper/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Lars Moelleken",
+                "email": "lars@moelleken.org",
+                "homepage": "http://www.moelleken.org/",
+                "role": "Fork-Maintainer"
+            },
+            {
+                "name": "David Carr",
+                "email": "dave@daveismyname.com",
+                "homepage": "http://www.daveismyname.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "Pagination, without a database dependency",
+        "keywords": [
+            "pager",
+            "pagination",
+            "paginator"
+        ]
+    }
+]
